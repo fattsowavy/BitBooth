@@ -2,8 +2,7 @@
   "name": "bit-booth-monorepo",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/*"
   ],
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
