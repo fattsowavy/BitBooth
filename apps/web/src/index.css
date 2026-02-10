@@ -33,6 +33,17 @@
   --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-flicker: flicker 0.15s infinite;
 
+  /* Print Animation */
+  @keyframes print-slide {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   @keyframes flicker {
 
     0%,
@@ -190,4 +201,8 @@ body {
 .pixel-pattern {
   background-image: radial-gradient(circle, #8834ef 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+.animate-print {
+  animation: print-slide 3s ease-out forwards;
 }

@@ -87,55 +87,58 @@ const ResultScreen = ({ session, onRestart }) => {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-4xl">
-                        {/* Left: Photo Strip Display */}
+                        {/* Left: Printer Animation Display */}
                         <div className="lg:col-span-6 flex justify-center">
-                            <div className="relative bg-white p-4 retro-inset shadow-2xl rotate-1 group hover:rotate-0 transition-transform duration-500">
-                                {isGenerating ? (
-                                    <div className="w-64 h-96 flex flex-col items-center justify-center gap-4">
-                                        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                                        <p className="font-retro text-[10px] text-retro-navy animate-pulse">GENERATING STRIP...</p>
-                                    </div>
-                                ) : genError ? (
-                                    <div className="w-64 h-96 flex flex-col items-center justify-center gap-4 text-center p-4">
-                                        <span className="material-icons text-red-500 text-4xl">error</span>
-                                        <p className="font-retro text-[10px] text-red-600">{genError}</p>
-                                    </div>
-                                ) : stripUrl ? (
-                                    <>
-                                        <img
-                                            src={stripUrl}
-                                            alt="Photo Strip"
-                                            className="w-64 object-contain"
-                                        />
-                                        <div className="mt-4 text-center">
-                                            <p className="text-[10px] font-mono text-zinc-400">
-                                                BITBOOTH {new Date().getFullYear()} • {frame.title.toUpperCase()}
-                                            </p>
+                            <div className="relative w-80 flex flex-col items-center">
+                                {/* Printer Unit Top */}
+                                <div className="w-full bg-zinc-800 rounded-t-xl border-4 border-zinc-900 p-4 relative z-20 shadow-xl">
+                                    <div className="h-2 w-full bg-zinc-900 rounded-full mb-2"></div>
+                                    <div className="flex justify-between items-center">
+                                        <div className="flex gap-2">
+                                            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_lime]"></div>
+                                            <div className="w-3 h-3 rounded-full bg-red-500 opacity-20"></div>
                                         </div>
-                                    </>
-                                ) : (
-                                    <div className="w-64 h-96 flex flex-col gap-3">
-                                        {photoUrls.map((url, index) => (
-                                            <div key={index} className="w-full aspect-[4/3] bg-zinc-200 overflow-hidden relative">
-                                                {url ? (
-                                                    <img
-                                                        alt={`Photo ${index + 1}`}
-                                                        className="w-full h-full object-cover"
-                                                        src={url}
-                                                        style={{ filter: frame.filter }}
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full bg-zinc-300 flex items-center justify-center">
-                                                        <span className="font-retro text-[8px] text-zinc-400">EMPTY</span>
-                                                    </div>
-                                                )}
-                                                <div className="absolute bottom-1 right-1 bg-primary text-[10px] px-1 text-white">
-                                                    {String(index + 1).padStart(3, '0')}
+                                        <span className="font-retro text-[8px] text-zinc-500 uppercase tracking-widest">BIT-PRINT 2000</span>
+                                    </div>
+                                    {/* Paper Slot */}
+                                    <div className="mt-3 w-full h-3 bg-black rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.1)] border-b border-zinc-700"></div>
+                                </div>
+
+                                {/* Paper Exit Area (Masked) */}
+                                <div className="relative z-10 w-[90%] overflow-hidden pt-1">
+                                    {isGenerating ? (
+                                        <div className="h-64 bg-transparent flex flex-col items-center justify-center gap-4 border-x-2 border-dashed border-zinc-300/20 mx-4">
+                                            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                            <p className="font-retro text-[8px] text-primary animate-pulse text-center">PROCESSING<br />DATA...</p>
+                                        </div>
+                                    ) : genError ? (
+                                        <div className="h-64 flex flex-col items-center justify-center gap-4 text-center p-4">
+                                            <span className="material-icons text-red-500 text-4xl">error</span>
+                                            <p className="font-retro text-[10px] text-red-600">{genError}</p>
+                                        </div>
+                                    ) : (
+                                        <div className={stripUrl ? "animate-print origin-top" : ""}>
+                                            <div className="bg-white p-3 shadow-lg retro-border inline-block">
+                                                <img
+                                                    src={stripUrl}
+                                                    alt="Photo Strip"
+                                                    className="w-full object-contain"
+                                                />
+                                                <div className="mt-2 text-center border-t-2 border-dashed border-gray-300 pt-2">
+                                                    <p className="text-[8px] font-mono text-zinc-400">
+                                                        BITBOOTH • {new Date().toLocaleDateString()}
+                                                    </p>
+                                                    <p className="text-[6px] font-mono text-zinc-300 uppercase mt-1">
+                                                        {frame.title} FRAME
+                                                    </p>
                                                 </div>
                                             </div>
-                                        ))}
-                                    </div>
-                                )}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Printer Bottom Shadow/Base */}
+                                <div className="absolute top-16 w-[85%] h-full bg-transparent z-0 pointer-events-none"></div>
                             </div>
                         </div>
 

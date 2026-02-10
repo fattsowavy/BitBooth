@@ -32,6 +32,23 @@ export async function generateStrip(photos, frame, stickers = [[], [], [], []]) 
     ctx.fillStyle = frame.stripBg || '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Optional: Add pattern or texture based on frame key
+    if (frame.key === 'gameboy') {
+        // Dot matrix pattern
+        ctx.fillStyle = 'rgba(48, 98, 48, 0.05)';
+        for (let py = 0; py < canvas.height; py += 4) {
+            for (let px = 0; px < canvas.width; px += 4) {
+                ctx.fillRect(px, py, 2, 2);
+            }
+        }
+    } else if (frame.key === 'crt') {
+        // Scanlines
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        for (let py = 0; py < canvas.height; py += 4) {
+            ctx.fillRect(0, py, canvas.width, 2);
+        }
+    }
+
     // Draw each photo
     for (let i = 0; i < 4; i++) {
         const blob = photos[i];
@@ -81,17 +98,22 @@ export async function generateStrip(photos, frame, stickers = [[], [], [], []]) 
 
     // Footer branding
     const footerY = totalHeight - FOOTER_HEIGHT - PADDING;
+
+    // Draw Footer Background (optional, if needed to contrast with stripBg)
+    // ctx.fillStyle = frame.stripBg;
+    // ctx.fillRect(0, footerY - PADDING, STRIP_WIDTH, FOOTER_HEIGHT + PADDING * 2);
+
     ctx.fillStyle = frame.accentColor || '#8834ef';
-    ctx.font = '14px "Press Start 2P", monospace';
+    ctx.font = 'bold 24px "Press Start 2P", monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('BITBOOTH', STRIP_WIDTH / 2, footerY + 25);
+    ctx.fillText('BITBOOTH', STRIP_WIDTH / 2, footerY + 30);
 
     ctx.fillStyle = frame.stripBorder || '#000';
-    ctx.font = '10px "VT323", monospace';
+    ctx.font = '16px "VT323", monospace';
     ctx.fillText(
-        `STRIP #${Math.floor(Math.random() * 10000).toString().padStart(4, '0')} • ${new Date().getFullYear()}`,
+        `STRIP #${Math.floor(Math.random() * 10000).toString().padStart(4, '0')} • ${new Date().getFullYear()} • ${frame.title.toUpperCase()}`,
         STRIP_WIDTH / 2,
-        footerY + 48
+        footerY + 55
     );
 
     return new Promise((resolve) => {
