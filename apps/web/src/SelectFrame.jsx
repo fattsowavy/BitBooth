@@ -1,191 +1,124 @@
 import React from 'react';
-import allFrames from './frames/frameRegistry';
+import allFrames from './frames/frameRegistry.jsx';
 
 const SelectFrame = ({ onBack, onSelect }) => {
-    const frames = [
-        {
-            key: allFrames[0].key,
-            title: "Classic Game Boy",
-            subtitle: "Monochrome Green",
-            className: "bg-slate-900 border-[#306230]",
-            renderContent: () => (
-                <>
-                    <div className="absolute inset-0 bg-[#9bbc0f] flex items-center justify-center p-8">
-                        <div className="w-full h-full border-4 border-[#306230] relative flex items-center justify-center">
-                            <span className="text-[#306230] font-mono-retro text-6xl opacity-20">BIT</span>
-                        </div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-                        <div className="flex flex-col gap-1">
-                            <div className="w-4 h-4 rounded-full bg-red-600 shadow-inner"></div>
-                            <span className="text-[8px] font-retro text-[#306230]">BATTERY</span>
-                        </div>
-                        <span className="font-retro text-[10px] text-[#306230]">DOT MATRIX</span>
-                    </div>
-                </>
-            )
-        },
-        {
-            key: allFrames[1].key,
-            title: "Arcade Cabinet",
-            subtitle: "Neon Borders",
-            className: "bg-slate-900",
-            renderContent: () => (
-                <>
-                    <div className="absolute inset-0 border-[16px] border-primary/40 flex items-center justify-center">
-                        <div className="absolute inset-0 border-4 border-neon-cyan animate-pulse"></div>
-                        <div className="w-full h-full bg-black flex items-center justify-center">
-                            <span className="material-icons text-8xl text-primary/30">videogame_asset</span>
-                        </div>
-                    </div>
-                    <div className="absolute top-0 left-0 p-2 bg-primary text-[8px] font-retro">INSERT COIN</div>
-                </>
-            )
-        },
-        {
-            key: allFrames[2].key,
-            title: "Tamagotchi",
-            subtitle: "Cute Icons",
-            className: "bg-pink-100",
-            renderContent: () => (
-                <>
-                    <div className="absolute inset-0 border-[24px] border-pink-400 rounded-full scale-125"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-3/4 h-3/4 bg-[#c8d4a4] border-4 border-gray-600 p-2 flex flex-wrap content-between justify-around">
-                            <span className="material-icons text-gray-800/20">favorite</span>
-                            <span className="material-icons text-gray-800/20">pets</span>
-                            <span className="material-icons text-gray-800/20">egg</span>
-                            <span className="material-icons text-gray-800/20">cake</span>
-                        </div>
-                    </div>
-                </>
-            )
-        },
-        {
-            key: allFrames[3].key,
-            title: "Windows 95",
-            subtitle: "Grey Title Bars",
-            className: "bg-[#c0c0c0] flex flex-col",
-            renderContent: () => (
-                <>
-                    <div className="bg-[#000080] p-2 flex justify-between items-center mx-1 mt-1">
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-white/20"></div>
-                            <span className="font-display font-bold text-xs text-white">BitBooth_v1.0.exe</span>
-                        </div>
-                        <div className="flex gap-1">
-                            <div className="w-4 h-4 bg-[#c0c0c0] border border-white shadow-sm flex items-center justify-center text-black font-bold text-[8px]">_</div>
-                            <div className="w-4 h-4 bg-[#c0c0c0] border border-white shadow-sm flex items-center justify-center text-black font-bold text-[8px]">X</div>
-                        </div>
-                    </div>
-                    <div className="flex-grow m-4 border-2 border-gray-600 bg-teal-800 flex items-center justify-center shadow-[inset_2px_2px_4px_rgba(0,0,0,0.5)]">
-                        <span className="material-icons text-white/10 text-9xl">desktop_windows</span>
-                    </div>
-                </>
-            )
-        },
-        {
-            key: allFrames[4].key,
-            title: "Cyberpunk",
-            subtitle: "High Contrast Glitch",
-            className: "bg-background-dark",
-            renderContent: () => (
-                <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-neon-cyan/30"></div>
-                    <div className="absolute inset-4 border-2 border-primary border-dashed opacity-50"></div>
-                    <div className="absolute top-8 left-8 right-8 h-px bg-neon-cyan animate-pulse"></div>
-                    <div className="absolute bottom-8 left-8 right-8 h-px bg-neon-cyan animate-pulse"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-retro text-2xl text-neon-cyan skew-x-[-15deg] brightness-125">GLITCH</span>
-                    </div>
-                </>
-            )
-        },
-        {
-            key: allFrames[5].key,
-            title: "CRT Monitor",
-            subtitle: "Scanline Overlays",
-            className: "bg-gray-800 p-6",
-            renderContent: () => (
-                <div className="w-full h-full bg-black rounded-[40px] shadow-[inset_0_0_50px_rgba(255,255,255,0.1)] border-8 border-gray-700 relative overflow-hidden flex items-center justify-center">
-                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "4px 4px" }}></div>
-                    <span className="material-icons text-white/5 text-8xl scale-[2]">tv</span>
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent h-1/4 animate-[scan_4s_linear_infinite]"></div>
-                    <style>{`
-                    @keyframes scan {
-                        from { transform: translateY(-100%); }
-                        to { transform: translateY(400%); }
-                    }
-                `}</style>
-                </div>
-            )
-        }
-    ];
-
     return (
-        <div className="bg-background-light dark:bg-background-dark font-display text-white min-h-screen relative overflow-x-hidden selection:bg-primary/40">
-            {/* Retro Overlay Effects */}
-            <div className="fixed inset-0 scanlines z-50 pointer-events-none opacity-30"></div>
-            <div className="fixed inset-0 bg-gradient-to-b from-transparent via-primary/5 to-background-dark z-0 pointer-events-none"></div>
+        <div className="fixed inset-0 bg-arcade-green flex flex-col h-screen w-screen overflow-hidden">
 
-            <div className="relative z-10 max-w-6xl mx-auto px-6 py-12">
-                {/* Navigation Header */}
-                <header className="flex items-center mb-16">
-                    <button
-                        onClick={onBack}
-                        className="group flex items-center gap-4 text-primary hover:text-neon-cyan transition-colors"
-                    >
-                        <span className="material-icons text-4xl">arrow_back</span>
-                        <span className="font-mono-retro text-2xl uppercase tracking-widest hidden md:block">Main Menu</span>
-                    </button>
+            {/* Animated Background */}
+            <div className="absolute inset-0 pixel-grid-bg opacity-30 pointer-events-none"></div>
+            <div className="absolute inset-0 pixel-stars opacity-10 pointer-events-none"></div>
 
-                    <div className="flex-grow text-center">
-                        <h1 className="font-retro text-2xl md:text-4xl text-white tracking-tighter uppercase leading-tight">
-                            Select Your <br className="md:hidden" />
-                            <span className="text-primary">Frame</span>
-                        </h1>
-                        <div className="mt-4 flex justify-center gap-2">
-                            <div className="h-1 w-12 bg-primary"></div>
-                            <div className="h-1 w-4 bg-neon-cyan"></div>
-                            <div className="h-1 w-12 bg-primary"></div>
-                        </div>
-                    </div>
-
-                    <div className="w-24 hidden md:block"></div> {/* Spacer */}
-                </header>
-
-                {/* Selection Grid */}
-                <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {frames.map((frame, index) => (
-                        <div key={index} className="group cursor-pointer" onClick={() => onSelect(frame.key)}>
-                            <div className={`pixel-border pixel-border-hover aspect-square relative mb-6 overflow-hidden transition-all duration-300 ${frame.className}`}>
-                                {frame.renderContent()}
-                            </div>
-                            <div className="text-center">
-                                <h3 className="font-retro text-sm text-white mb-2 group-hover:text-neon-cyan transition-colors">{frame.title}</h3>
-                                <p className="font-mono-retro text-xl text-primary uppercase">{frame.subtitle}</p>
+            {/* Header */}
+            <div className="bg-black/90 p-4 md:p-6 border-b-4 border-black z-10 shrink-0 shadow-2xl relative">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <div className="flex items-center gap-4 md:gap-6">
+                        {/* Back Button */}
+                        <button
+                            onClick={() => onSelect(null)}
+                            className="bg-zinc-800 p-2 md:p-3 rounded-xl hover:bg-zinc-700 transition-all group border-2 border-white/5 hover:border-white/20 active:scale-95"
+                        >
+                            <span className="material-icons text-white group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        </button>
+                        <div>
+                            <h1 className="font-retro text-2xl md:text-4xl text-arcade-gold tracking-widest text-shadow-retro uppercase">
+                                Select Frame
+                            </h1>
+                            <div className="flex items-center gap-2 mt-1">
+                                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                <p className="font-display text-[10px] md:text-xs text-white/60 tracking-wider">
+                                    CHOOSE YOUR STYLE
+                                </p>
                             </div>
                         </div>
-                    ))}
-                </main>
+                    </div>
 
-                {/* Footer Hint */}
-                <footer className="mt-20 flex flex-col items-center gap-4">
-                    <div className="flex items-center gap-3 animate-bounce">
-                        <span className="material-icons text-neon-cyan">mouse</span>
-                        <p className="font-mono-retro text-2xl text-neon-cyan tracking-[0.2em] uppercase">Click to Select Frame</p>
+                    {/* Credits / Decorative */}
+                    <div className="hidden md:flex items-center gap-6">
+                        <div className="text-right font-retro">
+                            <p className="text-xs text-primary mb-1">CREDITS: ∞</p>
+                            <div className="flex items-center gap-1 justify-end opacity-50">
+                                <span className="w-1 h-3 bg-red-500"></span>
+                                <span className="w-1 h-3 bg-red-500"></span>
+                                <span className="w-1 h-3 bg-red-500"></span>
+                            </div>
+                        </div>
+                        <div className="w-12 h-12 bg-zinc-900 rounded-full border-4 border-zinc-800 relative flex items-center justify-center">
+                            <div className="w-8 h-1 bg-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+                            <div className="w-8 h-1 bg-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45"></div>
+                        </div>
                     </div>
-                    <div className="flex gap-2">
-                        <div className="w-2 h-2 bg-primary"></div>
-                        <div className="w-2 h-2 bg-primary/60"></div>
-                        <div className="w-2 h-2 bg-primary/30"></div>
-                    </div>
-                </footer>
+                </div>
+
+                {/* Decorative Bottom Border */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-neon-cyan to-primary opacity-50"></div>
             </div>
 
-            {/* Background Elements */}
-            <div className="fixed top-20 right-[-10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10"></div>
-            <div className="fixed bottom-20 left-[-10%] w-96 h-96 bg-neon-cyan/5 rounded-full blur-[120px] -z-10"></div>
+            {/* Scrollable Grid Area */}
+            <div className="flex-grow overflow-y-auto px-4 py-8 md:py-8 scrollbar-hide perspective-1000">
+                <div className="max-w-7xl mx-auto flex flex-col items-center justify-start min-h-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 w-full max-w-6xl pb-20">
+                        {allFrames.map((frame) => (
+                            <div
+                                key={frame.key}
+                                onClick={() => onSelect(frame.key)}
+                                className="group relative rounded-2xl border-4 border-zinc-900/50 hover:border-primary transition-all duration-300 cursor-pointer shadow-xl hover:shadow-primary/30 hover:-translate-y-2 overflow-hidden bg-zinc-900 flex flex-col"
+                            >
+                                {/* Card Background Tint based on frame color */}
+                                <div
+                                    className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none"
+                                    style={{ backgroundColor: frame.bgColor }}
+                                ></div>
+
+                                {/* Frame Preview Container */}
+                                <div className="relative aspect-[4/5] bg-black m-3 rounded-lg overflow-hidden border-2 border-white/5 ring-1 ring-white/5 group-hover:ring-primary/50 transition-all">
+                                    {/* The content from registry */}
+                                    <div className="absolute inset-0">
+                                        {frame.renderContent()}
+                                    </div>
+
+                                    {/* Hover Overlay */}
+                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center backdrop-blur-[2px] gap-3">
+                                        <span className="font-retro text-xl text-white border-2 border-white px-6 py-2 rounded-full animate-bounce button-glow">
+                                            START
+                                        </span>
+                                        <p className="font-display text-[10px] text-white/80 tracking-widest uppercase">
+                                            Apply Filter
+                                        </p>
+                                    </div>
+
+                                    {/* Scanlines overlay everywhere */}
+                                    <div className="absolute inset-0 scanlines opacity-20 pointer-events-none"></div>
+                                </div>
+
+                                {/* Frame Info */}
+                                <div className="px-4 pb-4 pt-1 text-center relative z-10">
+                                    <h3
+                                        className="font-retro text-lg text-white group-hover:text-primary transition-colors text-shadow-sm mb-1"
+                                        style={{ color: 'white', textShadow: `0 2px 0 ${frame.borderColor}` }} // subtle 3d effect
+                                    >
+                                        {frame.title}
+                                    </h3>
+                                    <p className="font-display text-[10px] uppercase tracking-wider opacity-60 text-white group-hover:opacity-100 transition-opacity">
+                                        {frame.subtitle}
+                                    </p>
+                                </div>
+
+                                {/* Active Selection Border (Animated) */}
+                                <div className="absolute inset-0 border-4 border-transparent group-hover:border-primary/50 rounded-2xl pointer-events-none transition-colors"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Footer Instructions */}
+            <div className="p-3 md:p-4 bg-black border-t-4 border-black text-center z-10 shrink-0 relative overflow-hidden">
+                <div className="flex justify-center items-center gap-2 font-retro text-[8px] md:text-xs text-white/40 animate-pulse">
+                    <span className="material-icons text-sm">touch_app</span>
+                    <span>TAP FRAME TO CONFIRM SELECTION</span>
+                </div>
+            </div>
         </div>
     );
 };
